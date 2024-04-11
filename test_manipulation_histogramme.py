@@ -23,3 +23,14 @@ def test_calculer_distance1():
     resultat = calculer_distance_1(h1_fourni, h2_fourni)
 
     assert resultat == valeur_attendue
+
+def test_calculer_distance2():
+
+    h1_fourni = np.array([1, 2, 3, 4, 5])
+    h2_fourni = np.array([2, 3, 4, 5, 6])
+
+    valeur_attendue = 5
+
+    resultat = calculer_distance_2(h1_fourni, h2_fourni)
+
+    assert resultat == valeur_attendue
