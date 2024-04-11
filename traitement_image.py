@@ -2,6 +2,17 @@ from PIL import Image
 import numpy as np
 
 def appliquer_rgb_to_gry(chemin_image_couleur, chemin_sauvegarde_gris):
+    
+"""
+     Convertit une image couleur en niveaux de gris.
+
+     Arguments:
+         chemin_image_couleur (str): Le chemin vers l'image couleur.
+         chemin_sauvegarde_gris (str): Le chemin pour sauvegarder l'image en niveaux de gris.
+
+     Retourne:
+         None: Cette fonction ne retourne rien, elle sauvegarde simplement l'image en niveaux de gris.
+     """
 
     # Ouvrir l'image en couleur
     image_couleur = Image.open(chemin_image_couleur)
@@ -32,6 +43,20 @@ def appliquer_rgb_to_gry(chemin_image_couleur, chemin_sauvegarde_gris):
 
 def appliquer_transformation_1(image_gris):
 
+    """
+        Applique une transformation à une image en niveaux de gris en utilisant un algorithme de comparaison avec les voisins.
+
+        Cette fonction parcourt chaque pixel de l'image et compare sa valeur avec celle de ses voisins. En fonction de ces
+        comparaisons, un code binaire est généré pour chaque pixel. Ce code binaire est ensuite converti en décimal et
+        assigné comme valeur du pixel dans l'image transformée.
+
+        Arguments:
+            image_gris (numpy.ndarray): L'image en niveaux de gris sous forme de tableau numpy.
+
+        Retourne:
+            numpy.ndarray: L'image transformée après l'application de la transformation.
+        """
+
     hauteur, largeur = image_gris.shape
     image_transformee = np.zeros((hauteur, largeur), dtype=np.uint8)
 
@@ -56,6 +81,23 @@ def appliquer_transformation_1(image_gris):
     return image_transformee
 
 def appliquer_transformation_2(image_gris, rayon):
+
+    """
+       Applique une transformation à une image en niveaux de gris en utilisant un voisinage défini par un rayon.
+
+       Cette fonction parcourt chaque pixel de l'image et calcule une valeur de sortie en fonction des valeurs de ses voisins
+       dans un voisinage défini par un rayon. Les valeurs de sortie sont calculées en appliquant une opération basée sur les
+       différences de valeurs entre les pixels voisins et le pixel en question, suivie d'une transformation logarithmique.
+
+       Arguments:
+           image_gris (numpy.ndarray): L'image en niveaux de gris sous forme de tableau numpy.
+           rayon (int): Le rayon pour le voisinage utilisé dans la transformation. Plus le rayon est grand, plus la zone
+               de voisinage est large.
+
+       Retourne:
+           numpy.ndarray: L'image transformée après l'application de la transformation.
+       """
+    
     # Dimensions de l'image
     hauteur, largeur = image_gris.shape
 
