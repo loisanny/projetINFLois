@@ -36,3 +36,18 @@ def calculer_distance_1(histogramme1, histogramme2):
     distance_arrondie = round(distance, 2)
 
     return distance_arrondie
+    
+
+def calculer_distance_2(histogramme1, histogramme2):
+
+    # Vérification des tailles des histogrammes
+    if len(histogramme1) != len(histogramme2):
+        return None
+
+    # Calcul de la distance
+    distance = np.sum(np.abs(histogramme1 - histogramme2))
+
+    # Arrondir le résultat à deux chiffres après la virgule
+    distance_arrondie = round(distance, 2)
+
+    return distance_arrondie
