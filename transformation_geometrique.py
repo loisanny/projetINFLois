@@ -1,7 +1,22 @@
 import math
 import numpy as np
-def calculer_reflexion_point(point,axe):
 
+def calculer_reflexion_point(point,axe):
+    
+ """
+    Calcule la réflexion d'un point par rapport à un axe.
+
+    Cette fonction prend en entrée les coordonnées d'un point (x, y) et un axe ('x' ou 'y') et calcule la réflexion
+    du point par rapport à cet axe.
+
+    Arguments :
+        point (tuple): Les coordonnées du point sous forme de tuple (x, y).
+        axe (str): L'axe de réflexion, 'x' pour l'axe horizontal ou 'y' pour l'axe vertical.
+
+    Retourne :
+        tuple: Les coordonnées du point réfléchi sous forme de tuple (x, y).
+        
+    """
     x, y = point
 
     # Opération si le mirroir est fait selo l'axe x
@@ -14,6 +29,23 @@ def calculer_reflexion_point(point,axe):
 
 
 def calculer_rotate_point(point, angle, center=(0, 0)):
+
+    """
+       Calcule la rotation d'un point autour d'un centre donné.
+
+       Cette fonction prend en entrée les coordonnées d'un point (x, y), un angle de rotation en degrés, et éventuellement
+       un centre de rotation (par défaut à l'origine), et calcule les nouvelles coordonnées du point après rotation.
+
+       Arguments :
+           point (tuple): Les coordonnées du point initial sous forme de tuple (x, y).
+           angle (float): L'angle de rotation en degrés.
+           center (tuple, optionnel): Les coordonnées du centre de rotation sous forme de tuple (x, y). Par défaut, le
+                                      centre de rotation est l'origine (0, 0).
+
+       Retourne :
+           tuple: Les coordonnées du point après rotation sous forme de tuple (x, y).
+           
+       """
 
     # initialisation d'une liste qui contient les coordonnées x et y initiales
     coord_point = [point[0], point[1]]
@@ -58,9 +90,25 @@ def calculer_rotate_point(point, angle, center=(0, 0)):
     # retourner les nouvelles coordonnées du point
     return round(coord_point_rot[0], 2), round(coord_point_rot[1], 2)
 
-calculer_rotate_point((2, 4), 30, (0, 0))
 
 def calculer_inclinaison_point(point, angle, direction):
+
+        """
+    Calcule l'inclinaison d'un point selon une direction donnée.
+
+    Cette fonction prend en entrée les coordonnées d'un point (x, y), un angle d'inclinaison en degrés, et une direction
+    ('x' ou 'y'), et calcule les nouvelles coordonnées du point après inclinaison selon cette direction.
+
+    Arguments :
+        point (tuple): Les coordonnées du point initial sous forme de tuple (x, y).
+        angle (float): L'angle d'inclinaison en degrés.
+        direction (str): La direction de l'inclinaison, 'x' pour une inclinaison selon l'axe des abscisses, 'y' pour
+                         une inclinaison selon l'axe des ordonnées.
+
+    Retourne :
+        tuple: Les coordonnées du point après inclinaison sous forme de tuple (x, y).
+        
+    """
 
     # initialisation d'une liste qui contient les coordonnées x et y initiales
     coord_point = [point[0], point[1]]
