@@ -5,7 +5,7 @@ from coordonnees_clou import calculer_coordonnees_clou
 from coordonnees_clou import appliquer_transformation_clou
 from traitement_image import appliquer_transformation_1, appliquer_transformation_2
 #from segmentation import *
-#from manupulation_histogramme import *
+from manupulation_histogramme import calculer_histogramme 
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
