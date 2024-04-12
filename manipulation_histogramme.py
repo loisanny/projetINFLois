@@ -1,26 +1,43 @@
 import numpy as np
 
 
-def calculer_histogramme(tableau_2D, w):
-    max_value = np.max(tableau_2D)
-    bins = [0, max_value / 4, max_value / 2, (3 * max_value) / 4, max_value]
-    nb_lignes, nb_colonnes = tableau_2D.shape
-    histogrammes = np.zeros((nb_lignes - w + 1, nb_colonnes - w + 1, len(bins) - 1), dtype=int)
+def calculer_histogramme(tableau_2d, w):
 
-    for i in range(nb_lignes - w + 1):
-        for j in range(nb_colonnes - w + 1):
-            debut_i = i
-            fin_i = i + w
-            debut_j = j
-            fin_j = j + w
+    # trouver valeur max du tableau
+    valeur_max = tableau_2d.max()
 
-            fenetre = tableau_2D[debut_i:fin_i, debut_j:fin_j]
-            hist, _ = np.histogram(fenetre, bins=bins, range=(0, max_value))
-            # Assurer que la forme de l'histogramme créé correspond à celle de histogrammes
-            histogrammes[i, j] = hist[:-1]
+    # déterminer les bins
+    bins = [0, int(valeur_max / 4), int(valeur_max / 2), int(3 * valeur_max / 4), valeur_max]
 
+    # initialisation des variables qui contiennent les dimensions du tableau
+    largeur, hauteur = tableau_2d.shape
 
-    return histogrammes
+    # initialiser le tableau 2D de l'histogramme
+    histogramme = np.zeros(((largeur - 2) * (hauteur - 2), 4), dtype=int)
+
+    # variable ligne du tableau d'histogramme
+    i = 0
+
+    # parcourir toutes les données du tableau
+    for x in range(w - 2, largeur - (w - 2)):
+        for y in range(w - 2, hauteur - (w - 2)):
+            # initialisation des limites de la fenêtre
+            debut_largeur = x - w + 2
+            debut_hauteur = y - w + 2
+            fin_largeur = x + w - 2
+            fin_hauteur = y + w - 2
+
+            # définition de la fenêtre de l'histogramme
+            fenetre = tableau_2d[debut_largeur: fin_largeur + 1, debut_hauteur: fin_hauteur + 1]
+
+            # définition de l'histogramme
+            hist, _ = np.histogram(fenetre, bins=bins)
+            histogramme[i] = hist
+
+            # incrémenter la ligne du tableau d'histogramme
+            i += 1
+
+    return histogramme
 
 def calculer_distance_1(histogramme1, histogramme2):
 
