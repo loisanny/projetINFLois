@@ -3,6 +3,22 @@ import numpy as np
 
 def calculer_histogramme(tableau_2d, w):
 
+    """
+        Calcule la distance entre deux histogrammes.
+
+        Cette fonction prend en entrée deux histogrammes et calcule la distance entre eux en utilisant la formule de la
+        distance euclidienne.
+
+        Arguments :
+            histogramme1 (numpy.ndarray): Le premier histogramme.
+            histogramme2 (numpy.ndarray): Le deuxième histogramme.
+
+        Retourne :
+            float: La distance entre les deux histogrammes arrondie à deux chiffres après la virgule, ou None si les
+                   histogrammes ont des tailles différentes.
+
+        """
+
     # trouver valeur max du tableau
     valeur_max = tableau_2d.max()
 
@@ -41,6 +57,22 @@ def calculer_histogramme(tableau_2d, w):
 
 def calculer_distance_1(histogramme1, histogramme2):
 
+    """
+        Calcule la distance entre deux histogrammes.
+
+        Cette fonction prend en entrée deux histogrammes et calcule la distance entre eux en utilisant la formule de la
+        distance euclidienne.
+
+        Arguments :
+            histogramme1 (numpy.ndarray): Le premier histogramme.
+            histogramme2 (numpy.ndarray): Le deuxième histogramme.
+
+        Retourne :
+            float: La distance entre les deux histogrammes arrondie à deux chiffres après la virgule, ou None si les
+                   histogrammes ont des tailles différentes.
+
+        """
+
     # Vérification des tailles des histogrammes
     if len(histogramme1) != len(histogramme2):
         return None
@@ -56,6 +88,22 @@ def calculer_distance_1(histogramme1, histogramme2):
     
 
 def calculer_distance_2(histogramme1, histogramme2):
+    
+"""
+            Calcule la distance entre deux histogrammes.
+
+            Cette fonction prend en entrée deux histogrammes et calcule la distance entre eux en utilisant la formule de la
+            distance de Manhattan.
+
+            Arguments :
+                histogramme1 (numpy.ndarray): Le premier histogramme.
+                histogramme2 (numpy.ndarray): Le deuxième histogramme.
+
+            Retourne :
+                float: La distance entre les deux histogrammes arrondie à deux chiffres après la virgule, ou None si les
+                       histogrammes ont des tailles différentes.
+
+            """
 
     # Vérification des tailles des histogrammes
     if len(histogramme1) != len(histogramme2):
