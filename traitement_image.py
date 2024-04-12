@@ -98,35 +98,29 @@ def appliquer_transformation_2(image_gris, rayon):
            numpy.ndarray: L'image transformée après l'application de la transformation.
        """
     
-    # Dimensions de l'image
+   # initialisation des variables qui contiennent les dimensions de l'image
     hauteur, largeur = image_gris.shape
 
-    # Création d'un tableau pour stocker le résultat de la transformation
-    resultat = np.zeros((hauteur, largeur), dtype=np.float32)
+    # initialisation du tableau qui contient les pixels de l'image transformée
+    image_transformee = np.zeros((hauteur, largeur), dtype=np.float32)
 
-    # Parcours de chaque pixel de l'image
-    for y in range(hauteur):
-        for x in range(largeur):
-            # Vérification si le pixel est à l'intérieur des bords
-            if rayon <= x < largeur - rayon and rayon <= y < hauteur - rayon:
-                # Calcul des valeurs pour chaque voisin
-                voisinages = [
-                    np.abs(image_gris[y, x + rayon]) - 2 * image_gris[y, x] + np.abs(image_gris[y, x - rayon]),
-                    np.abs(image_gris[y + rayon, x]) - 2 * image_gris[y, x] + np.abs(image_gris[y - rayon, x]),
-                    np.abs(image_gris[y - rayon, x + rayon]) - 2 * image_gris[y, x] + np.abs(
-                        image_gris[y + rayon, x - rayon])
-                ]
+    # parcourir le tableau des pixels de l'image
+    for y in range(rayon, largeur - rayon):
+        for x in range(rayon, hauteur - rayon):
+            # calcul première diagonale
+            diag_1 = np.log10(1 + np.abs(np.abs(image_gris[x, y + rayon]) - 2 * image_gris[x, y] +
+                                         np.abs(image_gris[x, y - rayon])))
+            # calcul deuxième diagonale
+            diag_2 = np.log10(1 + np.abs(np.abs(image_gris[x + rayon, y]) - 2 * image_gris[x, y] +
+                                         np.abs(image_gris[x - rayon, y])))
+            # calcul troisième diagonale
+            diag_3 = np.log10(1 + np.abs(np.abs(image_gris[x - rayon, y + rayon]) - 2 * image_gris[x, y] +
+                                         np.abs(image_gris[x + rayon, y - rayon])))
+            # appliquer la nouvelle valeur du pixel
+            image_transformee[x, y] = diag_1 + diag_2 + diag_3
 
-                # Calcul de la valeur de sortie pour le pixel
-                resultat[y, x] = np.log10(1 + sum(voisinages))
+    # convertir la matrice en entier
+    image_transformee = image_transformee.astype(int)
 
-    # Remplacement des valeurs des pixels de bord par zéro
-    resultat[:rayon, :] = 0
-    resultat[-rayon:, :] = 0
-    resultat[:, :rayon] = 0
-    resultat[:, -rayon:] = 0
+    return image_transformee
 
-    # Conversion de la matrice résultante de float à int
-    resultat = resultat.astype(np.uint8)
-
-    return resultat
