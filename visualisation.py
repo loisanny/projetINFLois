@@ -4,8 +4,8 @@
 from coordonnees_clou import calculer_coordonnees_clou
 from coordonnees_clou import appliquer_transformation_clou
 from traitement_image import appliquer_transformation_1, appliquer_transformation_2
-#from segmentation import *
-from manupulation_histogramme import calculer_histogramme 
+from segmentation import regrouper_points
+from manipulation_histogramme import calculer_histogramme
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
@@ -123,7 +123,7 @@ def visualiser_seg_image(path_image_ng, radius=2, w=3):
 
     # Calcul de l'histogramme et segmentation
     tab_histo = calculer_histogramme(image_trasf_2, w)
-    labels2 = regrouper_points(tab_histo)
+    labels2 = regrouper_points(tab_histo, k=2)
     segmented_image = labels2.reshape(img_array.shape[0] - w + 1, img_array.shape[1] - w + 1)
 
     # Affichage de l'image segmentée
