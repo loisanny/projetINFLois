@@ -12,47 +12,6 @@ def calculer_reflexion_point(point,axe):
     elif axe == 'y':
         return -x, y
 
-"""
-def calculer_rotate_point(point, angle, center=(0,0)):
-    x, y = point
-    cx, cy = center
-
-    # Convertion de l'angle en radian
-    angle_radians = math.radians(angle)
-
-    # Calculer les nouvelles coordonnées après rotation
-    x_new = (x - cx) * math.cos(angle_radians) - (y - cy) * math.sin(angle_radians) + cx
-    y_new = (x - cx) * math.sin(angle_radians) + (y - cy) * math.cos(angle_radians) + cy
-
-    # Arrondir les résultats à deux chiffres après la virgule
-    x_new = round(x_new, 2)
-    y_new = round(y_new, 2)
-
-    return x_new, y_new
-
-
-def calculer_inclinaison_point(point, angle, direction):
-
-    x, y = point
-
-    angle_radians = math.radians(angle)
-
-    if direction == 'x':
-
-        x_new = x + math.tan(angle_radians) * y
-
-        x_new = round(x_new, 2)
-        y_new = float(y)
-        return x_new, y_new
-
-    elif direction == 'y':
-
-        y_new = y + math.tan(angle_radians) * x
-
-        x_new = float(x)
-        y_new = round(y_new, 2)
-        return x_new, y_new
-"""
 
 def calculer_rotate_point(point, angle, center=(0, 0)):
 
